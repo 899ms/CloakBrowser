@@ -8,6 +8,8 @@ Changes are tagged: **[wrapper]** for Python/JS wrapper, **[binary]** for Chromi
 
 ## [Unreleased]
 
+- **[wrapper]** Fix JS CLI silently exiting with no output when run via `npx`/`node_modules/.bin` (#427). The entry-point guard compared `import.meta.url` to an unresolved `process.argv[1]`; symlinked bin installs (npm/pnpm/npx) never matched, so no subcommand ran. Now realpath-resolves the invoked path before comparing.
+
 ## [0.4.9] — 2026-07-09
 
 - **[wrapper]** Free-tier launch banner and `cloakbrowser info` upgrade hint now surface the **7-day free Pro trial** (Chromium 148). Python, JS, and .NET.
